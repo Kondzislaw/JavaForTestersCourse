@@ -5,12 +5,14 @@ public class MyFirstProgram {
   public static void main(String[] args) {
     hello("world");
 
-    double a = 4;
-    double b = 6;
-    System.out.println("Powierzchnia prostokąta o bokach "  + a +  " i " + b + " = " + area(a, b));
+    Rectangle r = new Rectangle(4,6);
+       System.out.println("Powierzchnia prostokąta o bokach "  + r.a +  " i " + r.b + " = " + r.area());
 
-    double len = 5;
-    System.out.println("Powierzchnia kwadratu o boku " + len + " = " + area(len));
+    Square s = new Square(5);
+      System.out.println("Powierzchnia kwadratu o boku " + s.l + " = " + s.area());
+
+//    Point p = new Point(10, 20);
+//    System.out.println("Distance between point " + p.p1 + " and point " + p.p2 + " equals " + p.distance());
 
   }
 
@@ -19,14 +21,8 @@ public class MyFirstProgram {
 
   }
 
-  public static double area(double l) {
-    return l * l;
 
-  }
 
-  public static double area(double a, double b) {
-    return a * b;
 
-  }
 
 }
