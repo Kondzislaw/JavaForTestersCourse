@@ -11,8 +11,6 @@ public class MyFirstProgram {
     Square s = new Square(5);
       System.out.println("Powierzchnia kwadratu o boku " + s.l + " = " + s.area());
 
-//    Point p = new Point(10, 20);
-//    System.out.println("Distance between point " + p.p1 + " and point " + p.p2 + " equals " + p.distance());
 
   }
 
