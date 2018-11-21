@@ -4,24 +4,18 @@ public class Point_executable {
 
   public static void main(String[] args) {
 
-    //  TASK 3
-//    double p1 = 6;
-//    double p2 = 11;
-    System.out.println("Result of the function from the second task is " + distance(6, 11));
+
+    Point p1 = new Point(3,2);
+    Point p2 = new Point(9,7);
 
 
-    //  TASK 4
-    Point p = new Point(10, 20);
-    System.out.println("Result of the method from the fourth task is " + p.distance());
+    System.out.println("Distance between two points as a function " + Point.distance(p1,p2));
 
 
+    Point p3 = new Point(3,2);
+    Point p4 = new Point(9,7);
 
-  }
-
-  //  TASK 2 - create a function for distance calculation
-
-  public static double distance(double p1, double p2) {
-    return p2 - p1;
+    System.out.println("Distance between two points with a method " + p3.distance2(p4));
 
   }
 
