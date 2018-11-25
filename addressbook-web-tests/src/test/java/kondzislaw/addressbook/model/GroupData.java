@@ -1,4 +1,4 @@
-package kondzislaw.addressbook;
+package kondzislaw.addressbook.model;
 
 public class GroupData {
   private final String name;
