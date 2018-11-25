@@ -21,7 +21,7 @@ public class ApplicationManager extends ContactsHelper {
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/edit.php");
     groupHelper = new GroupHelper(wd);
-    navigationHelper = new NavigationHelper(wd)
+    navigationHelper = new NavigationHelper(wd);
     login("admin", "secret");
   }
 
