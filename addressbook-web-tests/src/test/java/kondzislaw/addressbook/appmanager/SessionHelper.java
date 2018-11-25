@@ -20,6 +20,8 @@ public class SessionHelper {
     wd.findElement(By.xpath("//input[@value='Login']")).click();
   }
 
-
+  public void logOut() {
+    wd.findElement(By.linkText("Logout")).click();
+  }
 
 }
