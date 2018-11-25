@@ -1,5 +1,6 @@
 package kondzislaw.addressbook.tests;
 
+import kondzislaw.addressbook.model.GroupData;
 import org.testng.annotations.Test;
 
 public class GroupModificationTest extends TestBase {
@@ -9,6 +10,7 @@ public class GroupModificationTest extends TestBase {
     app.getNavigationHelper().gotoGroupPage("groups");
     app.getGroupHelper().selectGroup();
     app.getGroupHelper().editGroup();
+    app.getGroupHelper().fillGroupForm(new GroupData("Test1UPDATED", "Test2UPDATED", "Test3UPDATED"));
     app.getGroupHelper().updateGroup();
     app.getGroupHelper().returnToGroupPage("groups");
     app.getSessionHelper().logOut();

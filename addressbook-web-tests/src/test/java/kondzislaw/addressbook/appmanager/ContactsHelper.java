@@ -40,10 +40,6 @@ public class ContactsHelper extends BaseHelper {
     click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::input[2]"));
   }
 
-  public void goHome() {
-    click(By.linkText("home"));
-  }
-
   public void editContact() {
     click(By.xpath("//img[@alt='Edit']"));
   }
