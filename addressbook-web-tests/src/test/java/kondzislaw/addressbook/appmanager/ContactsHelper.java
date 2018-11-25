@@ -4,11 +4,10 @@ import kondzislaw.addressbook.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class ContactsHelper {
-  private WebDriver wd;
+public class ContactsHelper extends BaseHelper {
 
   public ContactsHelper(WebDriver wd) {
-    this.wd = wd;
+    super(wd);
   }
 
   public void submitContactCreation() {
@@ -16,24 +15,17 @@ public class ContactsHelper {
   }
 
   public void fillContactForm(ContactData contactData) {
-    wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstName());
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
-    wd.findElement(By.name("address")).click();
-    wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
-    wd.findElement(By.name("theform")).click();
-    wd.findElement(By.name("home")).click();
-    wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys(contactData.getHome_phone());
-    wd.findElement(By.name("email")).click();
-    wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
+
+    type(By.name("firstname"), contactData.getFirstName());
+    type(By.name("lastname"), contactData.getLastName());
+    type(By.name("address"), contactData.getAddress());
+    click(By.name("theform"));
+    type(By.name("home"), contactData.getHome_phone());
+    type(By.name("email"), contactData.getEmail());
+
   }
 
   public void goToNewContact() {
-    wd.findElement(By.linkText("add new")).click();
+    click(By.linkText("add new"));
   }
 }
