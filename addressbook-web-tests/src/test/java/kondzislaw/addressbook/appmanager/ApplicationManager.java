@@ -12,6 +12,7 @@ public class ApplicationManager {
 
   WebDriver wd;
 
+  private SessionHelper sessionHelper;
   private ContactsHelper contactsHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
@@ -23,16 +24,13 @@ public class ApplicationManager {
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     contactsHelper = new ContactsHelper(wd);
-    login("admin", "secret");
+    sessionHelper = new SessionHelper(wd);
+    sessionHelper.login("admin", "secret");
+
   }
 
-  public void login(String UserName, String password) {
-    wd.findElement(By.name("user")).click();
-    wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys(UserName);
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys(password);
-    wd.findElement(By.xpath("//input[@value='Login']")).click();
+  public void logOut() {
+    wd.findElement(By.linkText("Logout")).click();
   }
 
   public void stop() {
@@ -57,9 +55,6 @@ public class ApplicationManager {
     }
   }
 
-  public void contactLogOut() {
-    wd.findElement(By.linkText("Logout")).click();
-  }
 
   public GroupHelper getGroupHelper() {
     return groupHelper;
