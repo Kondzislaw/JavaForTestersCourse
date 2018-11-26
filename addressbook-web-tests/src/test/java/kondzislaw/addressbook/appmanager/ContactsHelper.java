@@ -28,7 +28,11 @@ public class ContactsHelper extends BaseHelper {
     click(By.linkText("add new"));
   }
 
-  public void selectContact() {
+  public void selectAllContacts() {
+    click(By.id("MassCB"));
+  }
+
+  public void selectOneContact() {
     click(By.name("selected[]"));
   }
 
