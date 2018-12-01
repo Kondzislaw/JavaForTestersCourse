@@ -30,36 +30,42 @@ public class ContactsHelper extends BaseHelper {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
-    public void goToNewContact () {
-      click(By.linkText("add new"));
-    }
 
-    public void selectAllContacts () {
-      click(By.id("MassCB"));
-    }
+  public void goToNewContact() {
+    click(By.linkText("add new"));
+  }
 
-    public void selectOneContact () {
-      click(By.name("selected[]"));
-    }
+  public void selectAllContacts() {
+    click(By.id("MassCB"));
+  }
 
-    public void closeAlert () {
-      wd.switchTo().alert().accept();
-    }
+  public void selectOneContact() {
+    click(By.name("selected[]"));
+  }
 
-    public void deleteContact () {
-      click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::input[2]"));
-    }
+  public void closeAlert() {
+    wd.switchTo().alert().accept();
+  }
 
-    public void editContact () {
-      click(By.xpath("//img[@alt='Edit']"));
-    }
+  public void deleteContact() {
+    click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::input[2]"));
+  }
 
-    public void updateContact () {
-      click(By.xpath("(//input[@name='update'])[2]"));
-    }
+  public void editContact() {
+    click(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void updateContact() {
+    click(By.xpath("(//input[@name='update'])[2]"));
+  }
 
   public void createContact(ContactData contact, boolean b) {
+    goToNewContact();
     fillContactForm(contact, b);
     submitContactCreation();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
