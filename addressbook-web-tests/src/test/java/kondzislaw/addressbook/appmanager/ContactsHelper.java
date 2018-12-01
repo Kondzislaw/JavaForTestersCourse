@@ -57,4 +57,9 @@ public class ContactsHelper extends BaseHelper {
     public void updateContact () {
       click(By.xpath("(//input[@name='update'])[2]"));
     }
+
+  public void createContact(ContactData contact, boolean b) {
+    fillContactForm(contact, b);
+    submitContactCreation();
   }
+}
