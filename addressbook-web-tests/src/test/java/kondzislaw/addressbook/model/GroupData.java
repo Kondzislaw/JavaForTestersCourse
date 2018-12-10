@@ -4,27 +4,33 @@ import java.util.Objects;
 
 public class GroupData {
 
-  private final String id;
+  private int id;
   private final String name;
   private final String header;
   private final String footer;
 
   public GroupData(String Name, String Header, String Footer) {
-    this.id = null;
+    this.id = 0;
     name = Name;
     header = Header;
     footer = Footer;
   }
 
-  public GroupData(String id, String Name, String Header, String Footer) {
+
+
+  public GroupData(int id, String Name, String Header, String Footer) {
     this.id = id;
     name = Name;
     header = Header;
     footer = Footer;
   }
 
-  public String getId() {
+  public int getId() {
     return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getName() {
@@ -40,25 +46,25 @@ public class GroupData {
   }
 
   @Override
+  public String toString() {
+    return "GroupData{" +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
+            '}';
+  }
+
+  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     GroupData groupData = (GroupData) o;
-    return Objects.equals(id, groupData.id) &&
+    return id == groupData.id &&
             Objects.equals(name, groupData.name);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(id, name);
-  }
-
-  @Override
-  public String toString() {
-    return "GroupData{" +
-            "id='" + id + '\'' +
-            ", name='" + name + '\'' +
-            '}';
   }
 
 }
