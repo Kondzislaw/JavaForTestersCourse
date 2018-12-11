@@ -9,8 +9,10 @@ public class GroupData {
   private final String header;
   private final String footer;
 
+
+
   public GroupData(String Name, String Header, String Footer) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     name = Name;
     header = Header;
     footer = Footer;
@@ -58,13 +60,12 @@ public class GroupData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     GroupData groupData = (GroupData) o;
-    return id == groupData.id &&
-            Objects.equals(name, groupData.name);
+    return Objects.equals(name, groupData.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(name);
   }
 
 }
