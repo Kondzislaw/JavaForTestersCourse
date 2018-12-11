@@ -13,7 +13,7 @@ public class ContactModification extends TestBase{
   public void contactModification() throws Exception {
 
     if (! app.getContactsHelper().isThereAContact()){
-      app.getContactsHelper().createContact(new ContactData("Konrad", "Tester", "Test Street\nTest City\n01-111 Test", "555444333", "konrad@test.com", "Test1UPDATED"), true);
+      app.getContactsHelper().createContact(new ContactData("Konrad", "Tester", "Test Street\nTest City\n01-111 Test", "555444333", "konrad@test.com", "[none]"), true);
     }
 
     app.getNavigationHelper().gotoHomePage();
