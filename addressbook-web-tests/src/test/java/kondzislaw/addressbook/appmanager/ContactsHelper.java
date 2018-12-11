@@ -43,8 +43,9 @@ public class ContactsHelper extends BaseHelper {
     click(By.id("MassCB"));
   }
 
-  public void selectOneContact() {
-    click(By.name("selected[]"));
+
+  public void selectOneContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void closeAlert() {
