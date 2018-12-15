@@ -30,7 +30,7 @@ public class GroupCreationTest extends TestBase {
 
     Assert.assertEquals(before,after);
 
-    app.getSessionHelper().logOut();
+    //app.getSessionHelper().logOut();
   }
 
 }

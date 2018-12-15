@@ -10,7 +10,7 @@ import java.util.List;
 public class ContactCreationTest extends TestBase{
 
 
-  @Test
+  @Test (enabled = true)
   public void testContactCreation() throws Exception {
 
     List<ContactData> before = app.getContactsHelper().getContactList();
@@ -30,7 +30,7 @@ public class ContactCreationTest extends TestBase{
     Assert.assertEquals(before,after);
 
 
-    app.getSessionHelper().logOut();
+    //app.getSessionHelper().logOut();
   }
 
 

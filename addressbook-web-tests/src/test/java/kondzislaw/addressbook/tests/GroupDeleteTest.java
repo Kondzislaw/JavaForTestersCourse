@@ -25,7 +25,7 @@ public class GroupDeleteTest extends TestBase {
     before.remove(before.size() - 1);
     Assert.assertEquals(before, after);
 
-    app.getSessionHelper().logOut();
+    //app.getSessionHelper().logOut();
 
   }
 

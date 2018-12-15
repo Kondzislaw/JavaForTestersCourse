@@ -9,7 +9,7 @@ import java.util.List;
 public class ContactDelete extends TestBase {
 
 
-  @Test
+  @Test (enabled = true)
   public void contactDelete() throws Exception {
 
 
