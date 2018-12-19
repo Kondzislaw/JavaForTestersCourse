@@ -2,11 +2,20 @@ package kondzislaw.addressbook.tests;
 
 import kondzislaw.addressbook.model.GroupData;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class GroupDeleteTest extends TestBase {
+
+  @BeforeMethod
+  public void ensurePreconditions(){
+    app.getNavigationHelper().gotoGroupPage("groups");
+    if (!app.getGroupHelper().isThereAGroup()) {
+      app.getGroupHelper().createGroup(new GroupData("Test1", null, null));
+    }
+  }
 
   @Test
   public void testGroupDelete() throws Exception {
