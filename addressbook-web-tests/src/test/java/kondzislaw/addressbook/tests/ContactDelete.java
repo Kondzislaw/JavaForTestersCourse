@@ -11,9 +11,10 @@ public class ContactDelete extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.goTo().HomePage();
+
     if (app.Contact().all().size() == 0){
-      app.Contact().create(new ContactData().withFirstName("Konrad").withLastName("Tester"), true);
+      app.Contact().create(new ContactData().withFirstName("Konrad").withLastName("Tester").withAddress("adres").withHome_phone("333222444").withEmail("sample@email").withGroup("[none]"), true);
+      app.goTo().HomePage();
     }
 
   }
@@ -21,13 +22,13 @@ public class ContactDelete extends TestBase {
   @Test (enabled = true)
   public void contactDelete() throws Exception {
 
-    app.Contact().selectAllContacts();
-    app.Contact().deleteContact();
-    app.Contact().closeAlert();
+    Contacts before = app.Contact().all();
+    app.Contact().deleteAllContacts();
     Contacts after = app.Contact().all();
-    Assert.assertEquals(after.size(), 0);
+    Assert.assertNotEquals(after,before);
+
+    }
 
 
-  }
 
 }

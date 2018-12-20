@@ -6,19 +6,23 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class ContactModification extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.goTo().HomePage();
+
     if (app.Contact().all().size() == 0){
-      app.Contact().create(new ContactData().withFirstName("Konrad").withLastName("Tester"), true);
+      app.Contact().create(new ContactData().withFirstName("Konrad").withLastName("Tester").withAddress("adres").withHome_phone("333222444").withEmail("sample@email").withGroup("[none]"), true);
+      app.goTo().HomePage();
     }
 
   }
 
 
-  @Test (enabled = false)
+  @Test (enabled = true)
   public void contactModification() throws Exception {
 
     Contacts before = app.Contact().all();
@@ -29,13 +33,8 @@ public class ContactModification extends TestBase{
     Contacts after = app.Contact().all();
 
     Assert.assertEquals(after.size(), before.size());
-
-    before.remove(before.size() -1);
-    before.add(contact);
-
-
     Assert.assertEquals(before,after);
-
+    assertThat(after,equalTo(before));
 
   }
 
