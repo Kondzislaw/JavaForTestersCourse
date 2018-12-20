@@ -1,13 +1,13 @@
 package kondzislaw.addressbook.appmanager;
 
 import kondzislaw.addressbook.model.ContactData;
+import kondzislaw.addressbook.model.Contacts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsHelper extends BaseHelper {
@@ -43,7 +43,6 @@ public class ContactsHelper extends BaseHelper {
     click(By.id("MassCB"));
   }
 
-
   public void selectOneContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
@@ -59,32 +58,39 @@ public class ContactsHelper extends BaseHelper {
   public void editContact (int index) { wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
 
   }
-    //click(By.xpath("//img[@alt='Edit']"));
 
+  public void editContactById (int id) {wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
 
+  }
 
   public void updateContact() {
     click(By.xpath("(//input[@name='update'])[2]"));
   }
 
-  public void createContact(ContactData contact, boolean b) {
+  public void create(ContactData contact, boolean b) {
     goToNewContact();
     fillContactForm(contact, b);
     submitContactCreation();
+  }
+
+  public void modify(ContactData contact) {
+    fillContactForm(contact, false);
+    updateContact();
+
   }
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public List<ContactData> getContactList() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Contacts all() {
+    Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       String firstName = element.findElement(By.cssSelector("td:nth-of-type(3)")).getText();
       String lastName = element.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData(id,firstName,lastName, null, null, null,null);
+      ContactData contact = new ContactData().withId(id).withFirstName(firstName).withLastName(lastName);
       contacts.add(contact);
     }
     return contacts;

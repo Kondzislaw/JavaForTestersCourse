@@ -1,27 +1,30 @@
 package kondzislaw.addressbook.tests;
 
 import kondzislaw.addressbook.model.ContactData;
+import kondzislaw.addressbook.model.Contacts;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 public class ContactDelete extends TestBase {
 
 
+  @BeforeMethod
+  public void ensurePreconditions(){
+    app.goTo().HomePage();
+    if (app.Contact().all().size() == 0){
+      app.Contact().create(new ContactData().withFirstName("Konrad").withLastName("Tester"), true);
+    }
+
+  }
+
   @Test (enabled = true)
   public void contactDelete() throws Exception {
 
-
-    if (!app.getContactsHelper().isThereAContact()) {
-      app.getContactsHelper().createContact(new ContactData("Konrad", "Tester", "Test Street\nTest City\n01-111 Test", "555444333", "konrad@test.com", "Test1UPDATED"), true);
-    }
-    app.goTo().gotoHomePage();
-
-    app.getContactsHelper().selectAllContacts();
-    app.getContactsHelper().deleteContact();
-    app.getContactsHelper().closeAlert();
-    List<ContactData> after = app.getContactsHelper().getContactList();
+    app.Contact().selectAllContacts();
+    app.Contact().deleteContact();
+    app.Contact().closeAlert();
+    Contacts after = app.Contact().all();
     Assert.assertEquals(after.size(), 0);
 
 

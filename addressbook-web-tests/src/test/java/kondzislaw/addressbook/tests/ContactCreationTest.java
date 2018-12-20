@@ -1,36 +1,27 @@
 package kondzislaw.addressbook.tests;
 
 import kondzislaw.addressbook.model.ContactData;
-import org.testng.Assert;
+import kondzislaw.addressbook.model.Contacts;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactCreationTest extends TestBase{
+public class ContactCreationTest extends TestBase {
 
 
-  @Test (enabled = true)
+  @Test(enabled = true)
   public void testContactCreation() throws Exception {
 
-    List<ContactData> before = app.getContactsHelper().getContactList();
-    ContactData contact = new ContactData("Konrad", "Tester", null, null, null, "[none]");
-    app.getContactsHelper().createContact((contact), true);
-    app.goTo().gotoHomePage();
-    List<ContactData> after = app.getContactsHelper().getContactList();
+    Contacts before = app.Contact().all();
+    ContactData contact = new ContactData().withFirstName("Konrad").withLastName("Tester").withGroup("[none]");
+    app.Contact().create((contact), true);
+    app.goTo().HomePage();
+    Contacts after = app.Contact().all();
+    assertThat(after.size(), equalTo(before.size() + 1));
+    assertThat(after, equalTo(
+            before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
 
-    Assert.assertEquals(after.size(), before.size() + 1);
-
-    before.add(contact);
-
-    Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-    before.sort(byId);
-    after.sort(byId);
-
-    Assert.assertEquals(before,after);
-
-
-    //app.getSessionHelper().logOut();
   }
 
 
