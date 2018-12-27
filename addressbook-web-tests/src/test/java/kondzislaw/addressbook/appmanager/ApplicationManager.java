@@ -73,6 +73,10 @@ public class ApplicationManager {
     return groupHelper;
   }
 
+  public ContactsHelper contact() {
+    return contactsHelper;
+  }
+
   public NavigationHelper goTo() {
     return navigationHelper;
   }
