@@ -9,11 +9,34 @@ public class ContactData {
   private String lastName;
   private String address;
   private String home_phone;
-  private String email;
+  private String first_email;
   private String group;
   private String mobile_phone;
   private String work_phone;
   private String allPhones;
+  private String allEmails;
+  private String second_email;
+  private String third_email;
+
+  public ContactData withEmail2(String second_email) {
+    this.second_email = second_email;
+    return this;
+  }
+
+  public ContactData withEmail3(String third_email) {
+    this.third_email = third_email;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.first_email = email;
+    return this;
+  }
+
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
 
 
   public ContactData withAllPhones(String allPhones) {
@@ -37,7 +60,7 @@ public class ContactData {
   }
 
   public ContactData withFirstName(String firstName) {
-   this.firstName = firstName;
+    this.firstName = firstName;
     return this;
   }
 
@@ -56,10 +79,7 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withEmail(String email) {
-    this.email = email;
-    return this;
-      }
+
 
   public ContactData withGroup(String group) {
     this.group = group;
@@ -74,8 +94,8 @@ public class ContactData {
     return lastName;
   }
 
-  public String getEmail() {
-    return email;
+  public String getFirst_email() {
+    return first_email;
   }
 
   public String getAddress() {
@@ -97,6 +117,7 @@ public class ContactData {
   public String getWork_phone() {
     return work_phone;
   }
+
   public String getMobile_phone() {
     return mobile_phone;
   }
@@ -104,6 +125,19 @@ public class ContactData {
   public String getAllPhones() {
     return allPhones;
   }
+
+  public String getAllEmails() {
+    return allEmails;
+  }
+
+  public String getSecond_email() {
+    return second_email;
+  }
+
+  public String getThird_email() {
+    return third_email;
+  }
+
 
   @Override
   public String toString() {
