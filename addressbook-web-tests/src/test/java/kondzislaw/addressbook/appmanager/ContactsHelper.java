@@ -114,10 +114,12 @@ public class ContactsHelper extends BaseHelper {
       String lastName = element.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
       String allPhones = element.findElement(By.cssSelector("td:nth-of-type(6)")).getText();
       String allEmails = element.findElement(By.cssSelector("td:nth-of-type(5)")).getText();
+      String address = element.findElement(By.cssSelector("td:nth-of-type(4)")).getText();
 
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
 
-      ContactData contact = new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).withAllPhones(allPhones).withAllEmails(allEmails);
+      ContactData contact = new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).withAllPhones(allPhones).withAllEmails(allEmails)
+              .withAddress(address);
       contactCache.add(contact);
     }
     return new Contacts (contactCache);
@@ -133,10 +135,11 @@ public class ContactsHelper extends BaseHelper {
     String first_email = wd.findElement(By.name("email")).getAttribute("value");
     String second_email = wd.findElement(By.name("email2")).getAttribute("value");
     String third_email = wd.findElement(By.name("email3")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getAttribute("value");
     wd.navigate().back();
 
     return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname).withHome_phone(home).withMobile_phone(mobile).withWork_phone(work)
-            .withEmail(first_email).withEmail2(second_email).withEmail3(third_email);
+            .withEmail(first_email).withEmail2(second_email).withEmail3(third_email).withAddress(address);
   }
 
   private void initContactModificationById(int id) {

@@ -4,13 +4,10 @@ import kondzislaw.addressbook.model.ContactData;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactEmail_Test extends TestBase{
+public class ContactAddressTest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
@@ -23,21 +20,14 @@ public class ContactEmail_Test extends TestBase{
   }
 
   @Test
-  public void testEmail(){
+  public void testAddress(){
 
     app.goTo().HomePage();
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-    assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
+    assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
 
   }
-
-  private String mergeEmails(ContactData contact) {
-    return Arrays.asList(contact.getFirst_email(),contact.getSecond_email(), contact.getThird_email())
-            .stream().filter((s) -> !s.equals(""))
-            .collect(Collectors.joining("\n"));
-  }
-
 
 }
