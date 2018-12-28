@@ -11,7 +11,20 @@ public class ContactData {
   private String home_phone;
   private String email;
   private String group;
+  private String mobile_phone;
+  private String work_phone;
 
+
+
+  public ContactData withMobile_phone(String mobile_phone) {
+    this.mobile_phone = mobile_phone;
+    return this;
+  }
+
+  public ContactData withWork_phone(String work_phone) {
+    this.work_phone = work_phone;
+    return this;
+  }
 
   public ContactData withId(int id) {
     this.id = id;
@@ -74,6 +87,13 @@ public class ContactData {
 
   public int getId() {
     return id;
+  }
+
+  public String getWork_phone() {
+    return work_phone;
+  }
+  public String getMobile_phone() {
+    return mobile_phone;
   }
 
   @Override

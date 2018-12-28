@@ -112,11 +112,33 @@ public class ContactsHelper extends BaseHelper {
     for (WebElement element : elements) {
       String firstName = element.findElement(By.cssSelector("td:nth-of-type(3)")).getText();
       String lastName = element.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
+      String [] phones = element.findElement(By.cssSelector("td:nth-of-type(6)")).getText().split("\n");
+
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData().withId(id).withFirstName(firstName).withLastName(lastName);
+
+
+
+      ContactData contact = new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).withHome_phone(phones[0]).withMobile_phone(phones[1])
+              .withWork_phone(phones[2]);
       contactCache.add(contact);
     }
     return new Contacts (contactCache);
+  }
+
+  public ContactData infoFromEditForm(ContactData contact) {
+    initContactModificationById(contact.getId());
+    String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    wd.navigate().back();
+
+    return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname).withHome_phone(home).withMobile_phone(mobile).withWork_phone(work);
+  }
+
+  private void initContactModificationById(int id) {
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id))).click();
   }
 
 }
