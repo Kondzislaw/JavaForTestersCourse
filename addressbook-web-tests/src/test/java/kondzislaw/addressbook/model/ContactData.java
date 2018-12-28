@@ -13,8 +13,13 @@ public class ContactData {
   private String group;
   private String mobile_phone;
   private String work_phone;
+  private String allPhones;
 
 
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
 
   public ContactData withMobile_phone(String mobile_phone) {
     this.mobile_phone = mobile_phone;
@@ -94,6 +99,10 @@ public class ContactData {
   }
   public String getMobile_phone() {
     return mobile_phone;
+  }
+
+  public String getAllPhones() {
+    return allPhones;
   }
 
   @Override
