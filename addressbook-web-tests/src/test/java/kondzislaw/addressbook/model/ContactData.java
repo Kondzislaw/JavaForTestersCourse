@@ -17,6 +17,17 @@ public class ContactData {
   private String allEmails;
   private String second_email;
   private String third_email;
+  private String all_details;
+
+
+
+
+  public ContactData withAll_details(String all_details) {
+    this.all_details = all_details;
+    return this;
+  }
+
+
 
   public ContactData withEmail2(String second_email) {
     this.second_email = second_email;
@@ -138,6 +149,9 @@ public class ContactData {
     return third_email;
   }
 
+  public String getAll_details() {
+    return all_details;
+  }
 
   @Override
   public String toString() {

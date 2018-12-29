@@ -1,0 +1,36 @@
+package kondzislaw.addressbook.tests;
+
+import kondzislaw.addressbook.model.ContactData;
+import org.testng.annotations.Test;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+public class ContactDetailsTest extends TestBase {
+
+  @Test
+  public void testDetailsPage() {
+
+    app.goTo().HomePage();
+    ContactData contact = app.contact().all().iterator().next();
+    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+    ContactData contactInfoFromDetailsPage = app.contact().infoFromDetailsPage(contact);
+
+    assertThat(mergeAll(contactInfoFromEditForm), equalTo(contactInfoFromDetailsPage.getAll_details()));
+
+  }
+
+  private String mergeAll(ContactData contact) {
+    return Arrays.asList(contact.getFirstName(),contact.getLastName(),contact.getFirst_email(),contact.getSecond_email(),contact.getThird_email()
+            ,contact.getAddress(),contact.getHome_phone(),contact.getMobile_phone(), contact.getWork_phone())
+            .stream().filter((s) -> !s.equals(""))
+            .map(ContactPhoneTest::cleaned)
+            .collect(Collectors.joining("\n"));
+
+
+  }
+
+}

@@ -63,11 +63,11 @@ public class ContactsHelper extends BaseHelper {
   }
 
 
-  public void editContactById (int id) {
+  public void editContactById(int id) {
 
     WebElement table = wd.findElement(By.xpath("//*[@id=\"maintable\"]"));
 
-    WebElement row = table.findElement(By.xpath("//tr/td/*[@id='"+id+"']"));
+    WebElement row = table.findElement(By.xpath("//tr/td/*[@id='" + id + "']"));
 
     row.findElement(By.xpath("//td[8]/a/img")).click();
 
@@ -104,8 +104,8 @@ public class ContactsHelper extends BaseHelper {
 
 
   public Contacts all() {
-      if (contactCache != null) {
-        return new Contacts (contactCache);
+    if (contactCache != null) {
+      return new Contacts(contactCache);
     }
     contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
@@ -122,7 +122,7 @@ public class ContactsHelper extends BaseHelper {
               .withAddress(address);
       contactCache.add(contact);
     }
-    return new Contacts (contactCache);
+    return new Contacts(contactCache);
   }
 
   public ContactData infoFromEditForm(ContactData contact) {
@@ -143,7 +143,20 @@ public class ContactsHelper extends BaseHelper {
   }
 
   private void initContactModificationById(int id) {
-    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id))).click();
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+  }
+
+  public ContactData infoFromDetailsPage(ContactData contact) {
+    initContactDetailsById(contact.getId());
+    String allDetails = wd.findElement(By.xpath("//*[@id=\"content\"]")).getText();
+
+    wd.navigate().back();
+
+    return new ContactData().withId(contact.getId()).withAll_details(allDetails);
+  }
+
+  private void initContactDetailsById(int id) {
+    wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
   }
 
 }
