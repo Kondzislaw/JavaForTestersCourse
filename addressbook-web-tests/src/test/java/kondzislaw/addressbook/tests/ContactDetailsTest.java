@@ -19,7 +19,7 @@ public class ContactDetailsTest extends TestBase {
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
     ContactData contactInfoFromDetailsPage = app.contact().infoFromDetailsPage(contact);
 
-    assertThat(mergeAll(contactInfoFromEditForm), equalTo(contactInfoFromDetailsPage.getAll_details()));
+    assertThat(mergeAll(contactInfoFromEditForm), equalTo(cleaned(contactInfoFromDetailsPage.getAll_details())));
 
   }
 
@@ -29,8 +29,10 @@ public class ContactDetailsTest extends TestBase {
             .stream().filter((s) -> !s.equals(""))
             .map(ContactPhoneTest::cleaned)
             .collect(Collectors.joining("\n"));
+  }
 
-
+  public static String cleaned (String allDetails) {
+    return allDetails.replaceAll("\\s", "\n").replaceAll("[-()]", "");
   }
 
 }

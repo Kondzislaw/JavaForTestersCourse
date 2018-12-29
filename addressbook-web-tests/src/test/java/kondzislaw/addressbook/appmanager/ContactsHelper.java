@@ -150,10 +150,15 @@ public class ContactsHelper extends BaseHelper {
     initContactDetailsById(contact.getId());
     String allDetails = wd.findElement(By.xpath("//*[@id=\"content\"]")).getText();
 
+
     wd.navigate().back();
 
     return new ContactData().withId(contact.getId()).withAll_details(allDetails);
   }
+
+
+
+
 
   private void initContactDetailsById(int id) {
     wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
