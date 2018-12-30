@@ -100,6 +100,7 @@ public class ContactsHelper extends BaseHelper {
     return wd.findElements(By.name("selected[]")).size();
   }
 
+
   private Contacts contactCache = null;
 
 
@@ -110,6 +111,7 @@ public class ContactsHelper extends BaseHelper {
     contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
+
       String firstName = element.findElement(By.cssSelector("td:nth-of-type(3)")).getText();
       String lastName = element.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
       String allPhones = element.findElement(By.cssSelector("td:nth-of-type(6)")).getText();
@@ -121,6 +123,7 @@ public class ContactsHelper extends BaseHelper {
       ContactData contact = new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).withAllPhones(allPhones).withAllEmails(allEmails)
               .withAddress(address);
       contactCache.add(contact);
+
     }
     return new Contacts(contactCache);
   }
@@ -149,16 +152,9 @@ public class ContactsHelper extends BaseHelper {
   public ContactData infoFromDetailsPage(ContactData contact) {
     initContactDetailsById(contact.getId());
     String allDetails = wd.findElement(By.xpath("//*[@id=\"content\"]")).getText();
-
-
     wd.navigate().back();
-
     return new ContactData().withId(contact.getId()).withAll_details(allDetails);
   }
-
-
-
-
 
   private void initContactDetailsById(int id) {
     wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();

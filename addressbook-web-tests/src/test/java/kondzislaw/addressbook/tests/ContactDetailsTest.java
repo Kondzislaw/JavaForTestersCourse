@@ -24,15 +24,22 @@ public class ContactDetailsTest extends TestBase {
   }
 
   private String mergeAll(ContactData contact) {
-    return Arrays.asList(contact.getFirstName(),contact.getLastName(),contact.getFirst_email(),contact.getSecond_email(),contact.getThird_email()
-            ,contact.getAddress(),contact.getHome_phone(),contact.getMobile_phone(), contact.getWork_phone())
+    return Arrays.asList(contact.getFirstName(),contact.getLastName(), contact.getAddress(),contact.getHome_phone(),contact.getMobile_phone(),
+            contact.getWork_phone(),contact.getFirst_email(),contact.getSecond_email(),contact.getThird_email())
             .stream().filter((s) -> !s.equals(""))
-            .map(ContactPhoneTest::cleaned)
-            .collect(Collectors.joining("\n"));
+            .map(ContactDetailsTest::cleaned2)
+            .collect(Collectors.joining(""));
   }
 
+
   public static String cleaned (String allDetails) {
-    return allDetails.replaceAll("\\s", "\n").replaceAll("[-()]", "");
+    return allDetails.replaceAll("\\s", "\n").replaceAll("H:\\s", "").replaceAll("M:\\s", "")
+            .replaceAll("W:\\s", "").replaceAll("\\s+","");
+  }
+
+  public static String cleaned2(String phone) {
+    return phone.replaceAll("\\s+","");
   }
 
 }
+
