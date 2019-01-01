@@ -1,5 +1,6 @@
 package kondzislaw.addressbook.model;
 
+import java.io.File;
 import java.util.Objects;
 
 public class ContactData {
@@ -18,9 +19,14 @@ public class ContactData {
   private String second_email;
   private String third_email;
   private String all_details;
+  private File photo;
 
 
 
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
 
   public ContactData withAll_details(String all_details) {
     this.all_details = all_details;
@@ -131,6 +137,10 @@ public class ContactData {
 
   public String getMobile_phone() {
     return mobile_phone;
+  }
+
+  public File getPhoto() {
+    return photo;
   }
 
   @Override
