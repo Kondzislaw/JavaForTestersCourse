@@ -5,7 +5,6 @@ import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import kondzislaw.addressbook.model.ContactData;
 import kondzislaw.addressbook.model.Contacts;
-import kondzislaw.addressbook.model.GroupData;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -39,9 +38,9 @@ public class ContactCreationTest extends TestBase {
   }
 
   @DataProvider
-  public Iterator<Object[]> validGroupsFromXML() throws IOException {
+  public Iterator<Object[]> validContactsFromXml() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.xml")));
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")));
     String xml = "";
     String line = reader.readLine();
     while (line != null) {
@@ -49,15 +48,15 @@ public class ContactCreationTest extends TestBase {
       line = reader.readLine();
     }
     XStream xstream = new XStream();
-    xstream.processAnnotations(GroupData.class);
-    List<GroupData> groups = (List<GroupData>) xstream.fromXML(xml);
-    return groups.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+    xstream.processAnnotations(ContactData.class);
+    List<ContactData> contacts = (List<ContactData>) xstream.fromXML(xml);
+    return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
   }
 
   @DataProvider
-  public Iterator<Object[]> validGroupsFromJson() throws IOException {
+  public Iterator<Object[]> validContactsFromJson() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.json")));
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")));
     String json = "";
     String line = reader.readLine();
     while (line != null) {
@@ -65,12 +64,14 @@ public class ContactCreationTest extends TestBase {
       line = reader.readLine();
     }
     Gson gson = new Gson();
-    List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>(){}.getType());
-    return groups.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+    List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>(){}.getType());
+    return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
   }
 
 
-  @Test(dataProvider = "validContactsFromCsv")
+  //@Test(dataProvider = "validContactsFromCsv")
+  @Test(dataProvider = "validContactsFromJson")
+  //@Test(dataProvider = "validContactsFromXml")
   public void testContactCreation(ContactData contact) throws Exception {
 
     Contacts before = app.Contact().all();

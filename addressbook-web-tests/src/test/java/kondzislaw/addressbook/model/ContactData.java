@@ -22,7 +22,7 @@ public class ContactData {
   private String home_phone;
   @Expose
   private String first_email;
-  @XStreamOmitField
+  @Expose
   private String group;
   @Expose
   private String mobile_phone;

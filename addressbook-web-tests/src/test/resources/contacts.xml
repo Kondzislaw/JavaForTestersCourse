@@ -4,17 +4,20 @@
     <lastName>Tester 0</lastName>
     <address>Adres 0</address>
     <home__phone>110</home__phone>
+    <group>[none]</group>
   </contact>
   <contact>
     <firstName>Konrad 1</firstName>
     <lastName>Tester 1</lastName>
     <address>Adres 1</address>
     <home__phone>111</home__phone>
+    <group>[none]</group>
   </contact>
   <contact>
     <firstName>Konrad 2</firstName>
     <lastName>Tester 2</lastName>
     <address>Adres 2</address>
     <home__phone>112</home__phone>
+    <group>[none]</group>
   </contact>
 </list>
