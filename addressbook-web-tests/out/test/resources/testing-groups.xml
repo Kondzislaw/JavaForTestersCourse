@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" verbose="1" >
+    <test name="Groups" >
+        <classes>
+            <class name="" />
+            <class name="kondzislaw.addressbook.tests.GroupCreationTest" />
+            <class name="kondzislaw.addressbook.tests.GroupModificationTest" />
+            <class name="kondzislaw.addressbook.tests.GroupDeleteTest" />
+        </classes>
+    </test>
+</suite>
+
+        C:/JavaForTesters/JavaForTestersCourse/addressbook-web-tests
+        JavaForTestersCourse/addressbook-web-tests/src/test/java/kondzislaw/addressbook/tests/ContactCreationTest.java
+
+        JavaForTestersCourse/addressbook-web-tests/src/test/java/kondzislaw/addressbook/tests/ContactCreationTest.java
