@@ -1,0 +1,20 @@
+[
+  {
+    "firstName": "Konrad 0",
+    "lastName": "Tester 0",
+    "address": "Adres 0",
+    "home_phone": "110"
+  },
+  {
+    "firstName": "Konrad 1",
+    "lastName": "Tester 1",
+    "address": "Adres 1",
+    "home_phone": "111"
+  },
+  {
+    "firstName": "Konrad 2",
+    "lastName": "Tester 2",
+    "address": "Adres 2",
+    "home_phone": "112"
+  }
+]
