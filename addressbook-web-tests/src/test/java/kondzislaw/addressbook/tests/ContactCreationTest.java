@@ -22,6 +22,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTest extends TestBase {
 
+
   @DataProvider
   public Iterator<Object[]> validContactsFromCsv() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
