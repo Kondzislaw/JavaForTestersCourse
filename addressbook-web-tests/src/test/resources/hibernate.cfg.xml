@@ -36,20 +36,8 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="kondzislaw.addressbook.model.GroupData"/>
+        <mapping class="kondzislaw.addressbook.model.ContactData"/>
 
     </session-factory>
 
 </hibernate-configuration>
-        © 2019 GitHub, Inc.
-        Terms
-        Privacy
-        Security
-        Status
-        Help
-        Contact GitHub
-        Pricing
-        API
-        Training
-        Blog
-        About
-        Press h to open a hovercard with more details.

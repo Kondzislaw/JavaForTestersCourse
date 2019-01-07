@@ -3,47 +3,89 @@ package kondzislaw.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
 
 @XStreamAlias("contact")
-public class ContactData {
-  @XStreamOmitField
-  private int id = Integer.MAX_VALUE;
-  @Expose
-  private String firstName;
-  @Expose
-  private String lastName;
-  @Expose
-  private String address;
-  @Expose
-  private String home_phone;
-  @Expose
-  private String first_email;
-  @Expose
-  private String group;
-  @Expose
-  private String mobile_phone;
-  @Expose
-  private String work_phone;
-  @Expose
-  private String allPhones;
-  @Expose
-  private String allEmails;
-  @Expose
-  private String second_email;
-  @Expose
-  private String third_email;
-  @Expose
-  private String all_details;
-  private File photo;
+@Entity
+@Table(name = "addressbook")
 
+public class ContactData {
+
+  @XStreamOmitField
+  @Id
+  private int id = Integer.MAX_VALUE;
+
+  @Expose
+  @Column(name = "firstname")
+  private String firstName;
+
+  @Expose
+  @Column(name = "lastname")
+  private String lastName;
+
+  @Expose
+  @Column(name = "address")
+  @Type(type = "text")
+  private String address;
+
+  @Expose
+  @Column(name = "home")
+  @Type(type = "text")
+  private String home_phone;
+
+  @Expose
+  @Column(name = "email")
+  @Type(type = "text")
+  private String first_email;
+
+  @Expose
+  @Transient
+  private String group;
+
+  @Expose
+  @Column(name = "mobile")
+  @Type(type = "text")
+  private String mobile_phone;
+
+  @Expose
+  @Column(name = "work")
+  @Type(type = "text")
+  private String work_phone;
+
+  @Expose
+  @Transient
+  private String allPhones;
+
+  @Expose
+  @Transient
+  private String allEmails;
+
+  @Expose
+  @Column(name = "email2")
+  @Type(type = "text")
+  private String second_email;
+
+  @Expose
+  @Column(name = "email3")
+  @Type(type = "text")
+  private String third_email;
+
+  @Expose
+  @Transient
+  private String all_details;
+
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
@@ -51,7 +93,6 @@ public class ContactData {
     this.all_details = all_details;
     return this;
   }
-
 
 
   public ContactData withEmail2(String second_email) {
@@ -116,7 +157,6 @@ public class ContactData {
   }
 
 
-
   public ContactData withGroup(String group) {
     this.group = group;
     return this;
@@ -159,8 +199,9 @@ public class ContactData {
   }
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
+
 
   @Override
   public String toString() {
