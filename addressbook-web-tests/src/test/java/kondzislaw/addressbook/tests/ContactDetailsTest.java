@@ -24,8 +24,8 @@ public class ContactDetailsTest extends TestBase {
   }
 
   private String mergeAll(ContactData contact) {
-    return Arrays.asList(contact.getFirstName(),contact.getLastName(), contact.getAddress(),contact.getHome_phone(),contact.getMobile_phone(),
-            contact.getWork_phone(),contact.getFirst_email(),contact.getSecond_email(),contact.getThird_email())
+    return Arrays.asList(contact.getFirstName(),contact.getLastName(), contact.getAddress(),"H:",contact.getHome_phone(),"M:",contact.getMobile_phone(),
+            "W:",contact.getWork_phone(),contact.getFirst_email(),contact.getSecond_email(),contact.getThird_email())
             .stream().filter((s) -> !s.equals(""))
             .map(ContactDetailsTest::cleaned2)
             .collect(Collectors.joining(""));
@@ -33,8 +33,7 @@ public class ContactDetailsTest extends TestBase {
 
 
   public static String cleaned (String allDetails) {
-    return allDetails.replaceAll("\\s", "\n").replaceAll("H:\\s", "").replaceAll("M:\\s", "")
-            .replaceAll("W:\\s", "").replaceAll("\\s+","");
+    return allDetails.replaceAll("\\s", "\n").replaceAll("\\s+","");
   }
 
   public static String cleaned2(String phone) {
