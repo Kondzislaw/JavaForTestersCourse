@@ -80,9 +80,9 @@ public class GroupCreationTest extends TestBase {
 logger.info("Start test testGroupCreation");
 
     app.goTo().GroupPage("groups");
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
     app.group().create(group);
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
     assertThat(app.group().count(), equalTo(before.size() + 1));
 
     assertThat(after, equalTo(
@@ -95,11 +95,11 @@ logger.info("Start test testGroupCreation");
   public void testBadGroupCreation() throws Exception {
 
     app.goTo().GroupPage("groups");
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
     GroupData group = new GroupData().withName("Test2'''");
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size()));
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
     assertThat(after.size(), equalTo(before.size()));
 
   }
