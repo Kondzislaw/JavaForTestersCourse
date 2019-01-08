@@ -25,13 +25,13 @@ public class ContactModification extends TestBase{
   @Test (enabled = true)
   public void contactModification() throws Exception {
 
-    Contacts before = app.Contact().all();
+    Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstName("Konrad").withLastName("Tester_CHANGED");
     app.Contact().modify(contact);
     app.goTo().HomePage();
     assertThat(app.contact().count(), equalTo(before.size()));
-    Contacts after = app.Contact().all();
+    Contacts after = app.db().contacts();
 
     Assert.assertEquals(after.size(), before.size());
    // Assert.assertEquals(before,after);

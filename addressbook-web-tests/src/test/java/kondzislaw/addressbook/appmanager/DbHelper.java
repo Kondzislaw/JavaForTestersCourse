@@ -1,5 +1,7 @@
 package kondzislaw.addressbook.appmanager;
 
+import kondzislaw.addressbook.model.ContactData;
+import kondzislaw.addressbook.model.Contacts;
 import kondzislaw.addressbook.model.GroupData;
 import kondzislaw.addressbook.model.Groups;
 import org.hibernate.Session;
@@ -30,4 +32,23 @@ public class DbHelper {
     session.close();
     return new Groups(result);
   }
+
+  public Contacts contacts(){
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<ContactData> result = session.createQuery( "from ContactData where deprecated = '0000-00-00'" ).list();
+    session.getTransaction().commit();
+    session.close();
+    return new Contacts(result);
+  }
+
+  public Contacts contactsDeleted(){
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<ContactData> result = session.createQuery( "from ContactData where deprecated != '0000-00-00'" ).list();
+    session.getTransaction().commit();
+    session.close();
+    return new Contacts(result);
+  }
+
 }
