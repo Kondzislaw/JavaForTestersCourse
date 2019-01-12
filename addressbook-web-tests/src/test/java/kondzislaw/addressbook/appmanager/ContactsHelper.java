@@ -47,10 +47,6 @@ public class ContactsHelper extends BaseHelper {
     click(By.id("MassCB"));
   }
 
-  public void selectOneContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
-  }
-
   public void closeAlert() {
     wd.switchTo().alert().accept();
   }
@@ -153,6 +149,10 @@ public class ContactsHelper extends BaseHelper {
     wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
 
+  public void selectOneContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+  }
+
   public ContactData infoFromDetailsPage(ContactData contact) {
     initContactDetailsById(contact.getId());
     String allDetails = wd.findElement(By.xpath("//*[@id=\"content\"]")).getText();
@@ -162,6 +162,10 @@ public class ContactsHelper extends BaseHelper {
 
   private void initContactDetailsById(int id) {
     wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
+  }
+
+  public void addToGroup() {
+    click(By.name("add"));
   }
 
 }
