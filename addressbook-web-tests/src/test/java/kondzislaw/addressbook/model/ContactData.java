@@ -7,7 +7,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 @XStreamAlias("contact")
@@ -44,10 +46,6 @@ public class ContactData {
   private String first_email;
 
   @Expose
-  @Transient
-  private String group;
-
-  @Expose
   @Column(name = "mobile")
   @Type(type = "text")
   private String mobile_phone;
@@ -82,6 +80,10 @@ public class ContactData {
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
 
   public ContactData withPhoto(File photo) {
@@ -157,11 +159,6 @@ public class ContactData {
   }
 
 
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
-
   public String getFirstName() {
     return firstName;
   }
@@ -180,10 +177,6 @@ public class ContactData {
 
   public String getHome_phone() {
     return home_phone;
-  }
-
-  public String getGroup() {
-    return group;
   }
 
   public int getId() {
@@ -212,7 +205,6 @@ public class ContactData {
             ", address='" + address + '\'' +
             ", home_phone='" + home_phone + '\'' +
             ", first_email='" + first_email + '\'' +
-            ", group='" + group + '\'' +
             ", mobile_phone='" + mobile_phone + '\'' +
             ", work_phone='" + work_phone + '\'' +
             ", allPhones='" + allPhones + '\'' +
@@ -258,4 +250,12 @@ public class ContactData {
     return all_details;
   }
 
+  public Groups getGroups() {
+    return new Groups(groups);
+  }
+
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
+  }
 }

@@ -12,7 +12,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,20 +22,20 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactCreationTest extends TestBase {
 
 
-  @DataProvider
-  public Iterator<Object[]> validContactsFromCsv() throws IOException {
-    List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
-    String line = reader.readLine();
-    while (line != null) {
-      String[] split = line.split(";");
-      list.add(new Object[]{new ContactData().withFirstName(split[0]).withLastName(split[1]).withAddress(split[2])
-      .withHome_phone(split[3]).withGroup(split[4])});
-      line = reader.readLine();
-
-    }
-    return list.iterator();
-  }
+//  @DataProvider
+//  public Iterator<Object[]> validContactsFromCsv() throws IOException {
+//    List<Object[]> list = new ArrayList<Object[]>();
+//    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
+//    String line = reader.readLine();
+//    while (line != null) {
+//      String[] split = line.split(";");
+//      list.add(new Object[]{new ContactData().withFirstName(split[0]).withLastName(split[1]).withAddress(split[2])
+//      .withHome_phone(split[3]).withGroup(split[4])});
+//      line = reader.readLine();
+//
+//    }
+//    return list.iterator();
+//  }
 
   @DataProvider
   public Iterator<Object[]> validContactsFromXml() throws IOException {
@@ -74,7 +73,7 @@ public class ContactCreationTest extends TestBase {
   }
 
 
-  @Test(dataProvider = "validContactsFromCsv")
+  @Test(dataProvider = "validContactsFromXml")
   //@Test(dataProvider = "validContactsFromJson")
   //@Test(dataProvider = "validContactsFromXml")
   public void testContactCreation(ContactData contact) throws Exception {

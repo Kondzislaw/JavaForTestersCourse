@@ -4,20 +4,69 @@
     <lastName>Tester 0</lastName>
     <address>Adres 0</address>
     <home__phone>110</home__phone>
-    <group>[none]</group>
+    <groups/>
   </contact>
   <contact>
     <firstName>Konrad 1</firstName>
     <lastName>Tester 1</lastName>
     <address>Adres 1</address>
     <home__phone>111</home__phone>
-    <group>[none]</group>
+    <groups/>
   </contact>
   <contact>
     <firstName>Konrad 2</firstName>
     <lastName>Tester 2</lastName>
     <address>Adres 2</address>
     <home__phone>112</home__phone>
-    <group>[none]</group>
+    <groups/>
+  </contact>
+  <contact>
+    <firstName>Konrad 3</firstName>
+    <lastName>Tester 3</lastName>
+    <address>Adres 3</address>
+    <home__phone>113</home__phone>
+    <groups/>
+  </contact>
+  <contact>
+    <firstName>Konrad 4</firstName>
+    <lastName>Tester 4</lastName>
+    <address>Adres 4</address>
+    <home__phone>114</home__phone>
+    <groups/>
+  </contact>
+  <contact>
+    <firstName>Konrad 5</firstName>
+    <lastName>Tester 5</lastName>
+    <address>Adres 5</address>
+    <home__phone>115</home__phone>
+    <groups/>
+  </contact>
+  <contact>
+    <firstName>Konrad 6</firstName>
+    <lastName>Tester 6</lastName>
+    <address>Adres 6</address>
+    <home__phone>116</home__phone>
+    <groups/>
+  </contact>
+  <contact>
+    <firstName>Konrad 7</firstName>
+    <lastName>Tester 7</lastName>
+    <address>Adres 7</address>
+    <home__phone>117</home__phone>
+    <groups/>
+  </contact>
+  <contact>
+    <firstName>Konrad 8</firstName>
+    <lastName>Tester 8</lastName>
+    <address>Adres 8</address>
+    <home__phone>118</home__phone>
+    <groups/>
+  </contact>
+  <contact>
+    <firstName>Konrad 9</firstName>
+    <lastName>Tester 9</lastName>
+    <address>Adres 9</address>
+    <home__phone>119</home__phone>
+    <groups/>
   </contact>
 </list>
