@@ -168,4 +168,23 @@ public class ContactsHelper extends BaseHelper {
     click(By.name("add"));
   }
 
+  public void removeFromGroup(){
+    click(By.name("remove"));
+  }
+
+  public void selectGroupAdd(String name) {
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(name);
+  }
+
+  public int selectContactAndReturnID(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+    return Integer.parseInt(wd.findElements(By.name("selected[]")).get(index).getAttribute("id"));
+  }
+
+  public void selectGroupRemove(String name) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(name);
+  }
+
+
+
 }
